@@ -1,4 +1,5 @@
-import { createHash } from 'node:crypto';
+import { sha256 } from '@noble/hashes/sha2.js';
+import { bytesToHex } from '@noble/hashes/utils.js';
 
 export const NOTICE = 'Synthetic usage and fictional prices only. Estimates are not vendor bills or real spending.';
 export const BUCKETS = Object.freeze(['input', 'output', 'cacheRead', 'cacheWrite']);
@@ -56,7 +57,7 @@ export function createLedger({ maxRecords = 1000, now = () => new Date().toISOSt
     record(payload) {
       const calculated = estimate(payload); // validate everything before mutating the ledger
       const canonical = JSON.stringify({ context: calculated.context, model: calculated.model, usage: calculated.usage, rates: calculated.rates });
-      const fingerprint = createHash('sha256').update(canonical).digest('hex');
+      const fingerprint = bytesToHex(sha256(new TextEncoder().encode(canonical)));
       const key = calculated.context.requestId; // globally unique within this one-process demo ledger
       const prior = records.get(key);
       if (prior) {

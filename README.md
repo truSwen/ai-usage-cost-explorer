@@ -1,6 +1,14 @@
 # AI Usage & Cost Explorer
 
-A dependency-free, locally runnable demonstration of **exact cost estimates, traceable rate snapshots and replay-aware usage records**. All model names, token usage, project labels and prices are fictional. No provider API is called and no actual spending is measured.
+**[Try the live synthetic demo](https://tribloc-ai-costs.pages.dev/)** — no installation or local server required.
+
+## Hosted browser version
+
+The hosted version computes in the visitor's browser. Its ledger stays in that tab and resets on reload; usage records are not sent to a server. This differs from the optional local Node HTTP server below, whose in-memory ledger is shared by its local tabs. The same calculation and replay rules are used. All six preset scenarios passed on the public site; all 49 automated tests passed after the browser-compatible hash update.
+
+Run `npm ci --ignore-scripts` before local use/build; `npm run build` creates the static `dist/` assets. The engine uses the pinned `@noble/hashes` implementation; esbuild is a build-only dependency. [Hosted checks](docs/hosted-checks.json).
+
+A locally runnable demonstration of **exact cost estimates, traceable rate snapshots and replay-aware usage records**. All model names, token usage, project labels and prices are fictional. No provider API is called and no actual spending is measured.
 
 ![Actual local demo showing a replay that does not increase the ledger total](docs/demo.png)
 
@@ -17,7 +25,7 @@ This project was independently implemented for public demonstration. It contains
 
 ## Run locally
 
-Requires Node.js 22+ and npm. Tested with Node.js 24.19.0. There are **no third-party dependencies** to install.
+Requires Node.js 22+ and npm. Tested with Node.js 24.19.0. Install the pinned packages with `npm ci --ignore-scripts` before running the commands below.
 
 ```sh
 npm test

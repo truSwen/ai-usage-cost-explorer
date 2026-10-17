@@ -1,0 +1,11 @@
+import {build} from 'esbuild';
+import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
+await mkdir('dist',{recursive:true});
+let html=await readFile('index.html','utf8');
+html=html.replace('src="app.js" defer','src="app.js" type="module"');
+html=html.replace('<a href="/api/ledger" target="_blank" rel="noopener">View ledger JSON ↗</a>','<button id="export" class="secondary">Inspect ledger JSON</button>');
+html=html.replace('The ledger resets when the server restarts and is shared by local browser tabs.','The ledger stays in this browser tab and resets on reload. No usage records are sent to a server.');
+await writeFile('dist/index.html',html);await copyFile('style.css','dist/style.css');
+await build({entryPoints:['browser-app.js'],bundle:true,format:'esm',platform:'browser',outfile:'dist/app.js',minify:true});
+await writeFile('dist/_headers',"/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'\n");
+await writeFile('dist/404.html','<!doctype html><html lang="en"><title>Not found</title><a href="/">Open the synthetic demo</a></html>');

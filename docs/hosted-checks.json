@@ -1,0 +1,32 @@
+[
+  {
+    "scenario": "standard",
+    "count": "1",
+    "total": "0.002540000000"
+  },
+  {
+    "scenario": "cached",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "missing",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "unknown",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "replay",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "conflict",
+    "count": "2",
+    "total": "0.004240000000"
+  }
+]
