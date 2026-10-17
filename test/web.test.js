@@ -1,0 +1,28 @@
+import { test, before, after } from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import { createWebServer } from '../web.js';
+import { fixture } from '../scenarios.js';
+let server,base;
+before(async()=>{server=createWebServer();await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));base=`http://127.0.0.1:${server.address().port}`;});
+after(()=>new Promise(resolve=>server.close(resolve)));
+const post=(path,payload)=>fetch(base+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+test('UI discloses fictional prices and lack of measured spending',async()=>{const r=await fetch(base);assert.equal(r.status,200);const text=await r.text();assert.match(text,/FICTIONAL PRICES/);assert.match(text,/Not measured/);assert.match(r.headers.get('content-security-policy'),/frame-ancestors 'none'/);});
+test('config only offers fictional models',async()=>{const d=await(await fetch(base+'/api/config')).json();assert.equal(d.synthetic,true);assert.deepEqual(Object.keys(d.prices),['mock-sprout','mock-canyon']);});
+test('HTTP record, replay and changed-ID conflict preserve ledger total',async()=>{
+ await post('/api/reset',{});const p=fixture();let r=await post('/api/record',p);assert.equal(r.status,200);assert.equal((await r.json()).record.costUsd,'0.002540000000');
+ const replay=await(await post('/api/record',p)).json();assert.equal(replay.replayed,true);assert.equal(replay.ledger.recordCount,1);
+ p.usage.input++;r=await post('/api/record',p);assert.equal(r.status,422);const d=await r.json();assert.equal(d.error,'REQUEST_ID_CONFLICT');assert.equal(d.ledger.totalCostUsd,'0.002540000000');
+});
+test('missing context refuses without echoing supplied values or adding record',async()=>{await post('/api/reset',{});const p=fixture();p.context.project='private-looking@example.invalid';const r=await post('/api/record',p);assert.equal(r.status,422);const text=await r.text();assert.ok(!text.includes('private-looking'));assert.equal(JSON.parse(text).ledger.recordCount,0);});
+test('all six scenarios return expected outcomes',async()=>{await post('/api/reset',{});for(const [scenario,status] of [['standard',200],['cached',200],['missing',422],['unknown',422],['replay',200],['conflict',422]]){assert.equal((await post('/api/scenario',{scenario})).status,status,scenario);}});
+test('unknown scenario does not dispatch',async()=>{assert.equal((await post('/api/scenario',{scenario:'__proto__'})).status,400);});
+test('malformed JSON is refused',async()=>{const r=await fetch(base+'/api/record',{method:'POST',headers:{'Content-Type':'application/json'},body:'{'});assert.equal(r.status,400);assert.equal((await r.json()).error,'INVALID_JSON');});
+test('oversized payload is refused',async()=>{const r=await fetch(base+'/api/record',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({padding:'x'.repeat(9000)})});assert.equal(r.status,413);});
+test('non-JSON request is refused',async()=>{assert.equal((await fetch(base+'/api/reset',{method:'POST',body:'{}'})).status,415);});
+test('cross-origin browser request is refused',async()=>{assert.equal((await fetch(base+'/api/ledger',{headers:{Origin:'https://example.invalid'}})).status,403);});
+test('untrusted Host header is refused',async()=>{const status=await new Promise((resolve,reject)=>{http.get(base,{headers:{Host:'example.invalid'}},res=>{res.resume();resolve(res.statusCode);}).on('error',reject);});assert.equal(status,403);});
+test('cross-site Fetch Metadata is refused',async()=>{assert.equal((await fetch(base,{headers:{'Sec-Fetch-Site':'cross-site'}})).status,403);});
+test('only allowlisted assets are served',async()=>{assert.equal((await fetch(base+'/metering.js')).status,404);});
+test('unsupported methods are refused',async()=>{assert.equal((await fetch(base+'/api/ledger',{method:'PUT'})).status,405);});
+test('reset requires an empty object',async()=>{assert.equal((await post('/api/reset',[])).status,400);assert.equal((await post('/api/reset',{extra:1})).status,400);});

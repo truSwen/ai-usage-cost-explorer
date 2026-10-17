@@ -1,0 +1,68 @@
+[
+  {
+    "scenario": "standard",
+    "status": "Simulation recorded",
+    "count": "1",
+    "total": "0.002540000000"
+  },
+  {
+    "scenario": "cached",
+    "status": "Simulation recorded",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "missing",
+    "status": "Refused: INVALID_CONTEXT",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "unknown",
+    "status": "Refused: UNKNOWN_MODEL",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "replay",
+    "status": "Replay: no duplicate record",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "conflict",
+    "status": "Refused: REQUEST_ID_CONFLICT",
+    "count": "2",
+    "total": "0.004240000000"
+  },
+  {
+    "scenario": "custom-price",
+    "total": "0.007580000000",
+    "count": "3"
+  },
+  {
+    "scenario": "custom-model",
+    "total": "0.013100000000",
+    "count": "4"
+  },
+  {
+    "scenario": "custom-replay",
+    "total": "0.013100000000",
+    "count": "4"
+  },
+  {
+    "scenario": "custom-invalid-rate",
+    "total": "0.013100000000",
+    "count": "4"
+  },
+  {
+    "scenario": "custom-invalid-tokens",
+    "total": "0.013100000000",
+    "count": "4"
+  },
+  {
+    "scenario": "reset",
+    "total": "0.000000000000",
+    "count": "0"
+  }
+]

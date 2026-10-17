@@ -1,0 +1,208 @@
+{
+  "synthetic": true,
+  "results": [
+    {
+      "scenario": "standard",
+      "status": "accepted",
+      "replayed": false,
+      "record": {
+        "schemaVersion": 1,
+        "synthetic": true,
+        "notice": "Synthetic usage and fictional prices only. Estimates are not vendor bills or real spending.",
+        "context": {
+          "project": "fictional-studio",
+          "workflow": "demo-classification",
+          "requestId": "demo-request-001"
+        },
+        "model": "mock-sprout",
+        "usage": {
+          "input": 1000,
+          "output": 200,
+          "cacheRead": 400,
+          "cacheWrite": 0
+        },
+        "rates": {
+          "input": "1.200000",
+          "output": "6.400000",
+          "cacheRead": "0.150000",
+          "cacheWrite": "1.500000"
+        },
+        "breakdown": {
+          "input": "0.001200000000",
+          "output": "0.001280000000",
+          "cacheRead": "0.000060000000",
+          "cacheWrite": "0.000000000000"
+        },
+        "costUsd": "0.002540000000",
+        "costPicoUsd": "2540000000",
+        "fingerprint": "2969e8eb4fd5181dbc2ba3eca32d23c3d7ca5fc6dcaa9011d052e14597258a6b",
+        "recordedAt": "2026-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "scenario": "cached",
+      "status": "accepted",
+      "replayed": false,
+      "record": {
+        "schemaVersion": 1,
+        "synthetic": true,
+        "notice": "Synthetic usage and fictional prices only. Estimates are not vendor bills or real spending.",
+        "context": {
+          "project": "fictional-studio",
+          "workflow": "demo-classification",
+          "requestId": "demo-request-002"
+        },
+        "model": "mock-sprout",
+        "usage": {
+          "input": 200,
+          "output": 200,
+          "cacheRead": 1200,
+          "cacheWrite": 0
+        },
+        "rates": {
+          "input": "1.200000",
+          "output": "6.400000",
+          "cacheRead": "0.150000",
+          "cacheWrite": "1.500000"
+        },
+        "breakdown": {
+          "input": "0.000240000000",
+          "output": "0.001280000000",
+          "cacheRead": "0.000180000000",
+          "cacheWrite": "0.000000000000"
+        },
+        "costUsd": "0.001700000000",
+        "costPicoUsd": "1700000000",
+        "fingerprint": "c1a987b14f40a37a8c1b72f7c9579fe31fdc50b10f37d21ce82ac44d56ee4648",
+        "recordedAt": "2026-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "scenario": "missing",
+      "status": "refused",
+      "code": "INVALID_CONTEXT"
+    },
+    {
+      "scenario": "unknown",
+      "status": "refused",
+      "code": "UNKNOWN_MODEL"
+    },
+    {
+      "scenario": "replay",
+      "status": "accepted",
+      "replayed": true,
+      "record": {
+        "schemaVersion": 1,
+        "synthetic": true,
+        "notice": "Synthetic usage and fictional prices only. Estimates are not vendor bills or real spending.",
+        "context": {
+          "project": "fictional-studio",
+          "workflow": "demo-classification",
+          "requestId": "demo-request-001"
+        },
+        "model": "mock-sprout",
+        "usage": {
+          "input": 1000,
+          "output": 200,
+          "cacheRead": 400,
+          "cacheWrite": 0
+        },
+        "rates": {
+          "input": "1.200000",
+          "output": "6.400000",
+          "cacheRead": "0.150000",
+          "cacheWrite": "1.500000"
+        },
+        "breakdown": {
+          "input": "0.001200000000",
+          "output": "0.001280000000",
+          "cacheRead": "0.000060000000",
+          "cacheWrite": "0.000000000000"
+        },
+        "costUsd": "0.002540000000",
+        "costPicoUsd": "2540000000",
+        "fingerprint": "2969e8eb4fd5181dbc2ba3eca32d23c3d7ca5fc6dcaa9011d052e14597258a6b",
+        "recordedAt": "2026-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "scenario": "conflict",
+      "status": "refused",
+      "code": "REQUEST_ID_CONFLICT"
+    }
+  ],
+  "ledger": {
+    "synthetic": true,
+    "notice": "Synthetic usage and fictional prices only. Estimates are not vendor bills or real spending.",
+    "recordCount": 2,
+    "totalCostUsd": "0.004240000000",
+    "records": [
+      {
+        "schemaVersion": 1,
+        "synthetic": true,
+        "notice": "Synthetic usage and fictional prices only. Estimates are not vendor bills or real spending.",
+        "context": {
+          "project": "fictional-studio",
+          "workflow": "demo-classification",
+          "requestId": "demo-request-001"
+        },
+        "model": "mock-sprout",
+        "usage": {
+          "input": 1000,
+          "output": 200,
+          "cacheRead": 400,
+          "cacheWrite": 0
+        },
+        "rates": {
+          "input": "1.200000",
+          "output": "6.400000",
+          "cacheRead": "0.150000",
+          "cacheWrite": "1.500000"
+        },
+        "breakdown": {
+          "input": "0.001200000000",
+          "output": "0.001280000000",
+          "cacheRead": "0.000060000000",
+          "cacheWrite": "0.000000000000"
+        },
+        "costUsd": "0.002540000000",
+        "costPicoUsd": "2540000000",
+        "fingerprint": "2969e8eb4fd5181dbc2ba3eca32d23c3d7ca5fc6dcaa9011d052e14597258a6b",
+        "recordedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+        "schemaVersion": 1,
+        "synthetic": true,
+        "notice": "Synthetic usage and fictional prices only. Estimates are not vendor bills or real spending.",
+        "context": {
+          "project": "fictional-studio",
+          "workflow": "demo-classification",
+          "requestId": "demo-request-002"
+        },
+        "model": "mock-sprout",
+        "usage": {
+          "input": 200,
+          "output": 200,
+          "cacheRead": 1200,
+          "cacheWrite": 0
+        },
+        "rates": {
+          "input": "1.200000",
+          "output": "6.400000",
+          "cacheRead": "0.150000",
+          "cacheWrite": "1.500000"
+        },
+        "breakdown": {
+          "input": "0.000240000000",
+          "output": "0.001280000000",
+          "cacheRead": "0.000180000000",
+          "cacheWrite": "0.000000000000"
+        },
+        "costUsd": "0.001700000000",
+        "costPicoUsd": "1700000000",
+        "fingerprint": "c1a987b14f40a37a8c1b72f7c9579fe31fdc50b10f37d21ce82ac44d56ee4648",
+        "recordedAt": "2026-01-01T00:00:00.000Z"
+      }
+    ]
+  }
+}

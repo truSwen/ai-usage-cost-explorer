@@ -1,0 +1,61 @@
+
+> ai-usage-cost-explorer@1.0.0 test
+> node --test test/*.test.js
+
+✔ exact four-bucket estimate and traceable rate snapshot (1.254041ms)
+✔ one-token sub-cent precision is preserved (0.082ms)
+✔ zero token usage costs exactly zero (0.06775ms)
+✔ cache write uses its own fictional rate (0.06475ms)
+✔ maximum allowed inputs remain exact (0.059042ms)
+✔ refuses missing context without recording (0.29575ms)
+✔ refuses missing workflow without recording (0.149917ms)
+✔ refuses empty project without recording (0.090542ms)
+✔ refuses arbitrary text context without recording (0.096667ms)
+✔ refuses extra field without recording (0.113583ms)
+✔ refuses unknown model without recording (0.093625ms)
+✔ refuses missing price without recording (0.067542ms)
+✔ refuses negative price without recording (0.043333ms)
+✔ refuses numeric rather than decimal-string price without recording (0.193667ms)
+✔ refuses exponential price without recording (0.077333ms)
+✔ refuses excess decimal precision without recording (0.039709ms)
+✔ refuses over-limit price without recording (0.06275ms)
+✔ refuses negative tokens without recording (0.049666ms)
+✔ refuses fractional tokens without recording (0.038375ms)
+✔ refuses non-finite tokens without recording (0.054333ms)
+✔ refuses wrong token type without recording (0.039083ms)
+✔ refuses over-limit tokens without recording (0.033709ms)
+✔ refuses missing bucket without recording (0.028416ms)
+✔ identical request replay returns original timestamp without double counting (0.385709ms)
+✔ equivalent decimal spelling is a replay (0.690334ms)
+✔ same request ID with changed usage is refused (0.110333ms)
+✔ same request ID with changed rates is refused (0.077458ms)
+✔ same request ID with changed context is refused (0.08225ms)
+✔ same request ID with changed model is refused (0.064625ms)
+✔ aggregate totals equal sum of unique records (0.065417ms)
+✔ caller mutation cannot alter stored records (0.05325ms)
+✔ ledger capacity rejects new IDs but permits existing replay (0.072208ms)
+✔ reset clears only local simulation state (0.051041ms)
+✔ unknown scenario is rejected (0.066792ms)
+✔ UI discloses fictional prices and lack of measured spending (14.990708ms)
+✔ config only offers fictional models (1.517625ms)
+✔ HTTP record, replay and changed-ID conflict preserve ledger total (9.5325ms)
+✔ missing context refuses without echoing supplied values or adding record (3.432416ms)
+✔ all six scenarios return expected outcomes (10.065958ms)
+✔ unknown scenario does not dispatch (0.422875ms)
+✔ malformed JSON is refused (2.37075ms)
+✔ oversized payload is refused (1.972208ms)
+✔ non-JSON request is refused (1.69ms)
+✔ cross-origin browser request is refused (1.558542ms)
+✔ untrusted Host header is refused (2.818167ms)
+✔ cross-site Fetch Metadata is refused (1.563791ms)
+✔ only allowlisted assets are served (1.55575ms)
+✔ unsupported methods are refused (1.5135ms)
+✔ reset requires an empty object (2.936958ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 120.933209

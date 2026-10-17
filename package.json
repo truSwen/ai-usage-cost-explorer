@@ -1,0 +1,9 @@
+{
+  "name": "ai-usage-cost-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Exact cost estimates and a replay-aware local ledger over synthetic AI usage and fictional prices.",
+  "engines": { "node": ">=22" },
+  "scripts": { "start": "node web.js", "test": "node --test test/*.test.js", "demo": "node example.js" }
+}
